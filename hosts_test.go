@@ -1,29 +1,15 @@
 package zabbix
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestHosts(t *testing.T) {
 	session := GetTestSession(t)
 
-	params := HostGetParams{
-		IncludeTemplates:      true,
-		SelectGroups:          SelectExtendedOutput,
-		SelectApplications:    SelectExtendedOutput,
-		SelectDiscoveries:     SelectExtendedOutput,
-		SelectDiscoveryRule:   SelectExtendedOutput,
-		SelectGraphs:          SelectExtendedOutput,
-		SelectHostDiscovery:   SelectExtendedOutput,
-		SelectWebScenarios:    SelectExtendedOutput,
-		SelectInterfaces:      SelectExtendedOutput,
-		SelectInventory:       SelectExtendedOutput,
-		SelectItems:           SelectExtendedOutput,
-		SelectMacros:          SelectExtendedOutput,
-		SelectParentTemplates: SelectExtendedOutput,
-		SelectScreens:         SelectExtendedOutput,
-		SelectTriggers:        SelectExtendedOutput,
-	}
+	params := HostGetParams{}
+	params.OutputFields = []string{"hostid"}
 
 	hosts, err := session.GetHosts(params)
 	if err != nil {
@@ -38,6 +24,7 @@ func TestHosts(t *testing.T) {
 		if host.HostID == "" {
 			t.Fatalf("Host %d returned in response body has no Host ID", i)
 		}
+		fmt.Println(host.HostID)
 	}
 
 	t.Logf("Validated %d Hosts", len(hosts))

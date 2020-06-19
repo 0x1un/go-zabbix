@@ -170,7 +170,6 @@ func (c *Session) Get(method string, params interface{}, v interface{}) error {
 	if err != nil {
 		return err
 	}
-
 	err = resp.Bind(v)
 	if err != nil {
 		return err

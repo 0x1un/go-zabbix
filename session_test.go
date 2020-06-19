@@ -10,7 +10,7 @@ var session *Session
 func GetTestCredentials() (username string, password string, url string) {
 	url = os.Getenv("ZBX_URL")
 	if url == "" {
-		url = "http://localhost:8080/api_jsonrpc.php"
+		url = "http://localhost/api_jsonrpc.php"
 	}
 
 	username = os.Getenv("ZBX_USERNAME")
