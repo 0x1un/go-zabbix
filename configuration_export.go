@@ -30,9 +30,5 @@ type ConfigurationExportResponse string
 
 func (c *Session) ConfiguraExport(params ConfigurationParamsRequest) (ConfigurationExportResponse, error) {
 	var respData ConfigurationExportResponse
-	err := c.Get("configuration.export", params, &respData)
-	if err != nil {
-		return respData, err
-	}
-	return respData, nil
+	return respData, c.Get("configuration.export", params, &respData)
 }
